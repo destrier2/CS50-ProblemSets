@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Users/Zoe/.vscode/libcs50-11.0.3/**",
+                "C:\\Users\\Zoe\\.vscode\\libcs50-11.0.3\\src**",
+                "C:\\Users\\Zoe\\AppData\\Local\\pip\\cache\\wheels\\0a\\a5\\07\\60ef5219c22c3223a302ea1394b51f4b50bb6fd6238fcfedca"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "C:/Apps/GCC/ucrt64/bin/gcc.exe"
+        }
+    ],
+    "version": 4
+}
