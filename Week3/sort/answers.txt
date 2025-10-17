@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort
+
+How do you know?: It took the longest out of the three when the data was backwards, and when the data was in the right order, the time complexity drastically improved, which is characteristic of bubble sort
+
+sort2 uses: Merge sort
+
+How do you know?: It was the fastest, and the time complexity didn't change much between the data in the right order and the reversed data. 
+
+sort3 uses: Selection sort
+
+How do you know?: The time complexity remained relatively consistent when the data was reversed, and while this is fast, it isn't as fast as sort 2
