@@ -1,0 +1,2 @@
+Since the average energy is 0.65906, the average valence is 0.484443 and the average danceability is 0.71646, the aura would be danceability and energy.
+Some songs might not perfectly fit into one of these categories. It would be better to calculate this by having more categories and by weighing how many times a person has listened to a song into the calculation too. 
