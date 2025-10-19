@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            document.addEventListener("DOMContentLoaded", function() {
+                
+                let wrongOptions = document.querySelectorAll('.wrong');
+                let feedback = document.querySelector('#feedback');
+                let correctYet = false;
+
+                wrongOptions.forEach(option => {
+                    option.addEventListener("click", function () {
+                        if (!correctYet) {
+                            option.style.backgroundColor="red";
+                            feedback.innerHTML="Incorrect";
+                            feedback.style.color="red";
+                        } else {
+                            feedback.style.color="black";
+                            feedback.innerHTML="You've already selected the correct response."
+                        }
+                    })
+                });
+                let rightOption = document.querySelector('.right');
+                rightOption.addEventListener("click", function() {
+                    rightOption.style.backgroundColor="green";
+                    feedback.innerHTML="Correct!"
+                    feedback.style.color="green";
+                    correctYet = true;
+                } )
+                
+                let feedbackTwo = document.querySelector('#feedbackTwo');
+                let answer = "Mount Doom";
+                document.querySelector('#submit').addEventListener('click', function() {
+                    if (answer == document.querySelector('#answerTwo').value) {
+                        foundTwo = true;
+                        feedbackTwo.innerHTML="Correct!";
+                        feedbackTwo.style.color="green";
+                        document.querySelector('#answerTwo').style.backgroundColor="green";
+                    } else {
+                        feedbackTwo.innerHTML="Incorrect :(";
+                        feedbackTwo.style.color="red";
+                        document.querySelector('#answerTwo').style.backgroundColor="red";
+                    }
+                    
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What was the name of the original Dark Lord, as listed in the Silmarillion?</h3>
+                <button class="right">Morgoth</button>
+                <button class="wrong">Valar</button>
+                <button class="wrong">Galadriel</button>
+                <button class="wrong">Sauron</button>
+                <br>
+                <p id="feedback"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                 <h3>What was the name of the volcano Frodo took the ring to?</h3>
+                 <input id="answerTwo" type="text">
+                 <button id="submit">Check</button>
+                 <br>
+                 <p id="feedbackTwo"></p>
+            </div>
+        </div>
+    </body>
+</html>
