@@ -17,7 +17,7 @@ History
 		<tr>
 			<td>{{ row.buysell }}</td>
 			<td>{{ row.symbol }}</td>
-			<td>{{ row.price }}</td>
+			<td>{{ row.price | usd }}</td>
 			<td>{{ row.amount }}</td>
 			<td>{{ row.timestamp }}</td>
 		</tr>

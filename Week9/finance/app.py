@@ -67,7 +67,7 @@ def buy():
 		if not bool(re.fullmatch(r'\d+', shares)):
 			flash("Please ensure you enter a valid number of shares.")
 			return apology("oops")
-		elif int(shares) <= 0 or not shares or int(shares) != shares:
+		elif int(shares) <= 0 or not shares or int(shares) != float(shares):
 			flash("Please ensure you enter a positive number of shares")
 			return apology("oops")
 		#assume that if they get this far, everything is correct
@@ -76,7 +76,6 @@ def buy():
 		if not user:
 			flash(f"An error occured. User {session["user_id"]} can't find cash")
 		else: 
-		#error: compare a float to float
 			cash = user[0]["cash"]
 			if float(cash) < (float(cost)*float(shares)):
 				flash(f"You do not have enough money to buy {shares} shares of {checkSymbol["symbol"]}")
@@ -87,6 +86,7 @@ def buy():
 				db.execute("UPDATE users SET cash = ? WHERE id = ?", cash, session["user_id"])
 				
 				flash(f"You successfully purchased {int(shares)} shares of {checkSymbol["name"]} ({checkSymbol["symbol"]}) for ${round(float(cost)*float(shares), 2)}. You now have ${round(cash,2)} remaining in your account.")
+				return redirect("/")
 		return redirect("/")
 	return render_template("buy.html")
 
@@ -228,14 +228,14 @@ def sell():
 		ownedshares = int(db.execute("SELECT DISTINCT symbol, SUM(amount) as amount FROM transactions WHERE user_id=? AND symbol=? GROUP BY symbol", session["user_id"], symbol)[0]["amount"])
 		if (ownedshares) < int(shares):
 			flash(f"You do not own {shares} shares of {symbol}")
-			return render_template("sell.html", shares=shareslist)
+			return apology("You don't own enough shares!")
 		#get username
 		username = db.execute("SELECT username FROM users WHERE id=?", session["user_id"])[0]["username"]
 		#get current price
 		price = lookup(symbol)["price"]
 		#add the transaction to transactions
 		db.execute("INSERT INTO transactions (user_id, username, symbol, price, amount, timestamp) VALUES (?, ?, ?, ?, ?, ?)", session["user_id"], username, symbol, price, int(shares)*(-1), datetime.now())
-		db.execute("UPDATE users SET cash=cash+? WHERE id=?", price, session["user_id"])
+		db.execute("UPDATE users SET cash=cash+? WHERE id=?", price*int(shares), session["user_id"])
 		flash(f"Successfully sold {shares} shares of {symbol} for {price*float(shares)}")
 		return redirect("/")
 	return render_template("sell.html", shares=shareslist)

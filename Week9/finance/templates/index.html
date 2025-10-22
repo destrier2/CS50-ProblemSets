@@ -6,8 +6,8 @@ Home
 
 {% block main %}
 <p>Logged in as: {{ username }}</p>
-<p>Current Cash Balance: {{ balance | usd}}</p>
-<p>Grand total: {{ total | usd}}</p>
+<p>Current Cash Balance: {{ balance | usd }}</p>
+<p>Grand total: {{ total | usd }}</p>
 <table class="table table-striped">
 	<tr>
 		<th scope="col">Stocks Owned</th>
@@ -19,9 +19,17 @@ Home
 		<tr>
 			<td>{{ row.symbol }}</td>
 			<td>{{ row.amount }}</td>
-			<td>{{ row.price | usd}}</td>
-			<td>{{ row.value | usd}}</td>
+			<td>{{ row.price | usd }}</td>
+			<td>{{ row.value | usd }}</td>
 		</tr>
 	{% endfor %}
+	<tr>
+		<th scope="row">CASH:</td>
+		<td>{{ balance | usd }}</td>
+	</tr>
+	<tr>
+		<th scope="row">BALANCE: </th>
+		<td>{{ total | usd }}</td>
+	</tr>
 </table>
 {% endblock %}
