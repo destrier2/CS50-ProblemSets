@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<p>Logged in as: {{ username }}</p>
+<p>Current Cash Balance: {{ balance | usd}}</p>
+<p>Grand total: {{ total | usd}}</p>
+<table class="table table-striped">
+	<tr>
+		<th scope="col">Stocks Owned</th>
+		<th scope="col">Number of shares</th>
+		<th scope="col">Current price per stock</th>
+		<th scope="col">Current value</th>
+	</tr>
+	{% for row in purchases %}
+		<tr>
+			<td>{{ row.symbol }}</td>
+			<td>{{ row.amount }}</td>
+			<td>{{ row.price | usd}}</td>
+			<td>{{ row.value | usd}}</td>
+		</tr>
+	{% endfor %}
+</table>
+{% endblock %}

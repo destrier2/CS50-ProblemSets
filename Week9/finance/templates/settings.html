@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Settings
+{% endblock %}
+
+{% block main %}
+<h1>Settings</h1>
+<br>
+<form action="/settings" method="POST">
+	<label>Enter current password:</label>
+	<input name="old" placeholder="Enter password" type="password" autofocus required>
+	<br>
+	<label>Enter new password:</label>
+	<input name="new" placeholder="New password" type="password" required>
+	<br>
+	<label>Confirm new password:</label>
+	<input name="confirm" placeholder="New password" type="password" required><br><br>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
