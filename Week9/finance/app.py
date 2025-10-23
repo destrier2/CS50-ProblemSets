@@ -245,6 +245,17 @@ def sell():
 def settings():
 	#View settings --> allow user to change their password
 	if request.method == "POST":
+		old = request.form.get("old")
+		oldhash = db.execute("SELECT hash FROM users WHERE id = ?", session["user_id"])[0]["hash"]
+		if not old or not check_password_hash(oldhash, old):
+			flash(f"Incorrect password. Please try again.")
+			return render_template("settings.html")
+		new = request.form.get("new")
+		confirm = request.form.get("confirm")
+		if new != confirm:
+			flash("Your confirmation must match your new password")
+			return render_template("settings.html")
+		db.execute("UPDATE users SET hash = ? WHERE id = ?", generate_password_hash(new), session["user_id"])
 		flash("Sucessfully changed password. Please log in again")
-		logout()
+		return redirect("/logout")
 	return render_template("settings.html")
